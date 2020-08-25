@@ -1,4 +1,5 @@
 from django.shortcuts import render
+
 from ipware import get_client_ip   
 import os
     
@@ -16,3 +17,7 @@ def getIP(request):
             return “0.0.0.0”
         else:
             return ip
+
+# def image(request):
+#     return render(request,'imgview/image.html',{'title':'Image'})
+
