@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 
 # Create your models here.
 class Track(models.Model):
@@ -13,10 +12,13 @@ class Track(models.Model):
     file_name = models.CharField(max_length=100)
     creater = models.GenericIPAddressField(default="0.0.0.0")
     public = models.BooleanField(default=True)
-    modified_time = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.track_name
+
+
+    class Meta:
+        app_label = 'browser'
 
 class Coordinates(models.Model):
     coordinates_id = models.AutoField(primary_key=True)
@@ -28,4 +30,8 @@ class Coordinates(models.Model):
     def __str__(self):
         name = self.track.ip_track_name + " : " + self.chromosome + " : " + self.start + "-" + self.end
         return name
+
+
+    class Meta:
+        app_label = 'browser'
 

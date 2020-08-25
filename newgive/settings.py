@@ -32,6 +32,8 @@ ALLOWED_HOSTS = ['sc.gersteinlab.org','*']
 
 INSTALLED_APPS = [
     'browser.apps.BrowserConfig',
+    'gwasdb.apps.GwasdbConfig',
+    'imgview.apps.ImgviewConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'active_link',
-    'background_task',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-            ]
+            ],
         },
     },
 ]
@@ -79,15 +80,32 @@ WSGI_APPLICATION = 'newgive.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    # 'default': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'NAME': 'gwas',
+    #         'USER': 'my383',
+    #         'PASSWORD': 'GWAS_Site',
+    #         'HOST': 'localhost',
+    #         'PORT': '3306',
+    #         'OPTIONS':{'charset': 'utf8',}
+    #     },
+    'default': {},
+    'basic':{
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        'OPTIONS': {
-            'timeout': 20,
-        }
-    }
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
+    },
+    'gwas': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'gwas',
+            'USER': 'root',
+            'PASSWORD': 'Ysyhl9t.',
+            'HOST': 'localhost',
+            'PORT': '3306',
+            'OPTIONS':{'charset': 'utf8',}
+        },
 }
 
+DATABASE_ROUTERS = ['newgive.basic_router.BasicRouter','newgive.gwas_router.GwasRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

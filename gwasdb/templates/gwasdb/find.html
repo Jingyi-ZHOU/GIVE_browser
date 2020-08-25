@@ -1,0 +1,79 @@
+{% extends "browser/base.html" %} {% block content %}
+<div class="instruction">
+  <h1>Introduction</h1>
+  <div class="instruction-text">
+    <p>
+      Welcome to Find LD SNPs section. Find LD SNPs section is created for
+      searching linked SNPs based on user specific SNPs or exsiting GWAS. Users
+      can select linked SNPs by setting R² and specific population.
+    </p>
+    <br />
+    <p>
+      * Please notice that the allowed format of upload file is 1-based .bed
+      file.
+    </p>
+  </div>
+</div>
+<div class="user-input">
+  <h1>Input</h1>
+
+  <div class="steps">
+    <form method="post">
+      {% csrf_token %}
+      <div class="step1">
+        <h2>
+          Step1. Use specific SNPs/Search existing GWAS as SNPs
+        </h2>
+        {{ form1.inputWay.label }} {{ form1.inputWay }}
+        <div id="option1" style="display: none;">
+          <div class="spe-SNPs">
+            {{ form2.as_p}}
+          </div>
+          <p style="font-weight: bold;">OR</p>
+          <div class="spe-SNPs">
+            {{form3.as_p}}
+          </div>
+        </div>
+
+        <div id="option2" class="dise-GWAS" style="display: none;">
+          {{form4.as_p}}
+        </div>
+      </div>
+
+      <div class="step2">
+        <h2>
+          Step2. Set R² threshold
+        </h2>
+        {{ form1.r2.errors }}{{ form1.r2.label }}{{ form1.r2 }}
+      </div>
+      <div class="step3">
+        <h2>Step3. Select a population to search</h2>
+        {{ form1.ppl.label }}{{ form1.ppl }}
+      </div>
+      <input id="myBtn3" type="submit" value="Submit" class="myButton" />
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        if ($("#id_inputWay_0").prop("checked")) {
+          $("#option1").show();
+          $("#option2").hide();
+        } else if ($("#id_inputWay_1").prop("checked")) {
+          $("#option1").hide();
+          $("#option2").show();
+        }
+      });
+      $("input[type=radio][name=inputWay]").change(function () {
+        if (this.value == "1") {
+          $("#option1").show();
+          $("#option2").hide();
+        } else if (this.value == "2") {
+          $("#option1").hide();
+          $("#option2").show();
+        }
+      });
+    </script>
+  </div>
+</div>
+
+{% endblock content %}

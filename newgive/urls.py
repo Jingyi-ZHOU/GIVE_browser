@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from gwasdb import views as gwasdb_views
+from imgview import views as img_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('find/', gwasdb_views.find, name='find'),
+    path('image/',img_views.image,name='image'),
     path('',include('browser.urls')),
 ]

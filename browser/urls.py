@@ -10,7 +10,6 @@ urlpatterns = [
     path('reset/', views.reset, name='reset'),
     path('data/', views.data, name='browser-data'),
     re_path('download/(?P<id>\d+)', views.file_down,name = "download"),
-    path('find/', views.find, name='browser-find'),
+    # path('find/', views.find, name='browser-find'),
     path('contact/', views.contact, name='browser-contact'),
-    path('t/', views.t, name='test'),
 ]
