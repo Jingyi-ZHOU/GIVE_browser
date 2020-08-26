@@ -3,12 +3,19 @@ class GwasRouter:
     """
     A router to control all database operations on models in the app02 application.
     """
+    gwas_app_labels = {'gwasdb'}
+
+
     def db_for_read(self, model, **hints):
-        return 'gwas' 
+        if model._meta.app_label in self.gwas_app_labels:
+            return 'gwas' 
+        return None
 
  
     def db_for_write(self, model, **hints):
-        return 'gwas'
+        if model._meta.app_label in self.gwas_app_labels:
+            return 'gwas' 
+        return None
  
     def allow_relation(self, obj1, obj2, **hints):
         db_set = {'basic', 'gwas'}
@@ -20,5 +27,6 @@ class GwasRouter:
         """
         All non-auth models end up in this pool.
         """
-        return True
-       
+        if app_label in self.gwas_app_labels:
+            return db == 'gwas'
+        return None

@@ -80,32 +80,35 @@ WSGI_APPLICATION = 'newgive.wsgi.application'
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {},
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'defaultdb.sqlite3')
+    },
     'basic':{
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3')
     },
-    # 'gwas': {
-    #         'ENGINE': 'django.db.backends.mysql',
-    #         'NAME': 'gwas',
-    #         'USER': 'root',
-    #         'PASSWORD': 'Ysyhl9t.',
-    #         'HOST': 'localhost',
-    #         'PORT': '3306',
-    #         'OPTIONS':{'charset': 'utf8',}
-    #     },
     'gwas': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'gwas',
-            'USER': 'my383',
-            'PASSWORD': 'GWAS_Site',
+            'USER': 'root',
+            'PASSWORD': 'Ysyhl9t.',
             'HOST': 'localhost',
             'PORT': '3306',
             'OPTIONS':{'charset': 'utf8',}
         },
+    # 'gwas': {
+    #         'ENGINE': 'django.db.backends.mysql',
+    #         'NAME': 'gwas',
+    #         'USER': 'my383',
+    #         'PASSWORD': 'GWAS_Site',
+    #         'HOST': 'localhost',
+    #         'PORT': '3306',
+    #         'OPTIONS':{'charset': 'utf8',}
+    #     },
 }
 
-DATABASE_ROUTERS = ['newgive.basic_router.BasicRouter','newgive.gwas_router.GwasRouter']
+DATABASE_ROUTERS = ['newgive.gwas_router.GwasRouter', 'newgive.basic_router.BasicRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
