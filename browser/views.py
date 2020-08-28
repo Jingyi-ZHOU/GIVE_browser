@@ -94,7 +94,8 @@ def panel(request):
         for i in range(len(track_ids)):
             t_id = track_ids[i]
             t = data.get(pk=t_id)
-            t.modified_time = datetime.time.now()
+            # t.modified_time = datetime.time.now()
+            t.modified_time = timezone.now()
             t.save()
             track = '\"'+t.track_name+'\",' if i < len(track_ids)-1 else '\"'+t.track_name+'\"'
             tracks.append(track)
