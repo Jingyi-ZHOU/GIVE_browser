@@ -18,39 +18,33 @@
   <h1>Input</h1>
 
   <div class="steps">
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="step1">
-        <h2>
-          Step1. Use specific SNPs/Search existing GWAS as SNPs
-        </h2>
+        <h2>Step1. Use specific SNPs/Search existing GWAS as SNPs</h2>
         {{ form1.inputWay.label }} {{ form1.inputWay }}
-        <div id="option1" style="display: none;">
-          <div class="spe-SNPs">
-            {{ form2.as_p}}
-          </div>
-          <p style="font-weight: bold;">OR</p>
-          <div class="spe-SNPs">
-            {{form3.as_p}}
-          </div>
+        <div id="option1" style="display: none">
+          <div class="spe-SNPs">{{ form2.as_p}}</div>
+          <p style="font-weight: bold">OR</p>
+          <div class="spe-SNPs">{{form3.as_p}}</div>
         </div>
 
-        <div id="option2" class="dise-GWAS" style="display: none;">
+        <div id="option2" class="dise-GWAS" style="display: none">
           {{form4.as_p}}
         </div>
       </div>
 
       <div class="step2">
-        <h2>
-          Step2. Set R² threshold
-        </h2>
+        <h2>Step2. Set R² threshold</h2>
         {{ form1.r2.errors }}{{ form1.r2.label }}{{ form1.r2 }}
       </div>
       <div class="step3">
         <h2>Step3. Select a population to search</h2>
         {{ form1.ppl.label }}{{ form1.ppl }}
       </div>
-      <input id="myBtn3" type="submit" value="Submit" class="myButton" />
+      <div class="step4">
+        <input id="myBtn3" type="submit" value="Submit" class="myButton" />
+      </div>
     </form>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
@@ -75,5 +69,84 @@
     </script>
   </div>
 </div>
+{% if results %}
+<div class="user-output">
+  <h1>Output</h1>
+  <div class="res">
+    <div class="res-action">
+      <ul>
+        <li>
+          <a class="res-link" href="#">Download GWAS</a>
+        </li>
+        <li>
+          <a class="res-link" href="#">Download LD SNPs</a>
+        </li>
+        <li>
+          <a class="res-link" href="#">Download Scores</a>
+        </li>
+        <li>
+          <a class="res-link" href="{% url 'image' %}">View Static Image</a>
+        </li>
+        <li>
+          <a class="res-link" href="{% url 'browser-browser' %}">
+            Go Interavtive Visualization
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="res-panel">
+      <button class="active">Result</button>
+      <button>Summary</button>
+      <div class="tb" style="display: block">
+        <table class="raw-res">
+          <thead>
+            <tr>
+              <th>Chromosome</th>
+              <th>SNP1 Stop</th>
+              <th>SNP2 Stop</th>
+              <th>R²</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for r in results %}
+            <tr>
+              <td>{{ r.0 }}</td>
+              <td>{{ r.1 }}</td>
+              <td>{{ r.2 }}</td>
+              <td>{{ r.3 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <div class="tb">
+        <table class="sum-res">
+          <thead>
+            <tr>
+              <th>Statistic Variant</th>
+              <th>Summary</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+      <script>
+        var btn = document.getElementsByTagName("button");
+        var div = document.getElementsByClassName("tb");
 
-{% endblock content %}
+        for (var i = 0; i < btn.length; i++) {
+          (function (n) {
+            btn[n].onclick = function () {
+              for (var j = 0; j < btn.length; j++) {
+                btn[j].className = "";
+                div[j].style.display = "none";
+              }
+              this.className = "active";
+              div[n].style.display = "block";
+            };
+          })(i);
+        }
+      </script>
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock content %}

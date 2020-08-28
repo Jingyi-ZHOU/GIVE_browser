@@ -69,10 +69,7 @@ class UploadSNPs(forms.Form):
 class DiseaseName(forms.Form):
     with open('static/diseatuple.pickle','rb') as f:
         disease_choices = pickle.load(f)
-    # disease_choices = (
-    #     (0, '1,5 anhydroglucitol measurement'), (1, '3-hydroxy-1-methylpropylmercapturic acid levels in smokers'), 
-    #     (2, '3-hydroxypropylmercapturic acid levels in smokers'), (3, '3-month functional outcome in ischaemic stroke modified Rankin score')
-    # )
+
     diseases = forms.ChoiceField(
         label = '', 
         widget = forms.Select(), 

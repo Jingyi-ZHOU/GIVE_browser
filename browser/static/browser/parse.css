@@ -338,6 +338,10 @@ div.step3 {
   padding: 20px;
 }
 
+div.step4 {
+  padding: 10px 0px 0px 0px;
+}
+
 div.spe-SNPs {
   padding: 20px;
   font-size: 16px;
@@ -346,6 +350,124 @@ div.spe-SNPs {
 div.dise-GWAS {
   padding: 20px;
   font-size: 16px;
+}
+
+div.res {
+  text-align: center;
+  margin: 20px;
+  padding: 20px;
+}
+
+div.res-action {
+  margin: 20px;
+  padding: 20px;
+  display: inline;
+  text-align: center;
+}
+div.res-action ul {
+  display: inline;
+  text-align: center;
+}
+
+div.res-action ul li {
+  display: inline-block;
+  text-align: center;
+}
+
+a.res-link {
+  cursor: pointer;
+  padding: 10px;
+  background: #b7cfdc;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  margin: 10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+a.res-link:hover {
+  color: black;
+}
+
+a.res-link:link,
+a.res-link:visited {
+  text-decoration: none;
+}
+
+div.res-panel {
+  margin: 20px;
+  margin-top: 40px;
+  padding: 10px;
+  padding-top: 20px;
+  text-align: center;
+  border-style: ridge;
+}
+
+.res-panel div {
+  display: none;
+}
+
+.res-panel button {
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: bold;
+  color: black;
+  background: #b7cfdc;
+  border: none;
+  border-radius: 4px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  width: 150px;
+  display: inline-block;
+}
+
+div.res-way {
+  margin: 20px;
+  padding: 20px;
+  display: inline;
+  text-align: center;
+}
+
+div.res-way ul {
+  display: inline;
+  text-align: center;
+}
+
+div.res-way ul li {
+  display: inline-block;
+  text-align: center;
+}
+
+div.tb {
+  margin: 20px;
+  padding: 10px;
+  text-align: center；;
+}
+
+table.raw-res {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  color: #333333;
+  border-collapse: collapse;
+  text-align: center;
+  width: 70%;
+  border: 1px solid #d4f1f4;
+  margin: auto;
+}
+
+table.raw-res th {
+  background-color: #b7cfdc;
+  border: 1px solid #d4f1f4;
+  height: 40px;
+}
+
+table.raw-res td {
+  border: 1px solid #d4f1f4;
+  height: 30px;
+  width: 25%;
 }
 
 #myBtn,
