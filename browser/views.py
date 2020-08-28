@@ -17,7 +17,7 @@ import glob
 import time
 import datetime
 
-# 1 day = 60 * 60 * 12 = 43200
+# 12 hours = 60 * 60 * 12 = 43200
 REPEAT_DELETE_INTERVAL = 43200
 
 
@@ -225,7 +225,7 @@ def t(request):
         task = request.POST["task"]
         if task == "delete":
             delete_task(repeat=REPEAT_DELETE_INTERVAL)
-            return HttpResponse("<h1>TASK STARTED<h1>")
+            return HttpResponse("TASK STARTED")
 
     return HttpResponseNotFound("Page not Found")
 

@@ -3,7 +3,7 @@ class BasicRouter:
     A router to control all database operations on models in the
     auth and contenttypes applications.
     """
-    route_app_labels = {'auth', 'contenttypes', 'browser', 'admin', 'sessions'}
+    route_app_labels = {'auth', 'contenttypes', 'browser', 'admin', 'sessions', 'background_task'}
 
     def db_for_read(self, model, **hints):
         """
